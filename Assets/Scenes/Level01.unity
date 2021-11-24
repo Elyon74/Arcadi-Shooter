@@ -458,7 +458,6 @@ MonoBehaviour:
   currentia1expforkill: 10
   ia1firerate: 1
   ia1dead: 0
-  ia1fireenclenched: 0
   ia1speed: 3
   minposx: -7.5
   maxposx: 7.5
@@ -1534,13 +1533,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentplayerhp: 3
+  maxplayerhp: 3
   currentplayerexp: 0
   maxplayerexp: 99
   currentplayerlevel: 1
   maxplayerlevel: 99
   currentplayergold: 0
   maxplayergold: 999
-  maxplayerhp: 3
+  currentnumberofshield: 1
+  maxnumberofshield: 3
   dead: 0
   fireenclenched: 0
   shieldenclenched: 0

@@ -243,7 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc7636cddb4874e839ceeace7d5b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerate: 1
   player: {fileID: 5180004158530997588}
   fireIA: {fileID: 2414432405203369723}
   Impulse: {fileID: 2802632435551313944}

@@ -18,7 +18,7 @@ public class ShootIA : MonoBehaviour
 
     void Update()
     {
-        AddForceIA();
+        //AddForceIA();
     }
 
     public void AddForceIA()

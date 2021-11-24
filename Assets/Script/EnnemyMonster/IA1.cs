@@ -33,7 +33,7 @@ public class IA1 : MonoBehaviour
     void Update()
     {
         IAGoldAndExpGained(currentia1hp, ia1dead);
-        IAAttack(ia1firenext, ia1firerate);
+        //IAAttack(ia1firenext, ia1firerate);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minposx, maxposx), Mathf.Clamp(transform.position.y, minposy, maxposy), transform.position.z);
     }
     public void IAGoldAndExpGained(int currentia1hp, bool ia1dead)
