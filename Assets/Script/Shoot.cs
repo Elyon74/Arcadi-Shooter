@@ -20,12 +20,18 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         AddForce();
+        SelfDestroy();
     }
 
     public void AddForce()
     {
        // Appliquez une force a l' object pour le tir du joueur
        Impulse.AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(this, 5f);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

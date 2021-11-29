@@ -10,7 +10,7 @@ public class IA1 : MonoBehaviour
     public int currentia1goldforkill = 10;
     public int currentia1expforkill = 10;
     public float ia1firerate = 100;
-    private float  ia1firenext = 1;
+    public float  ia1firenext = 1;
     public bool ia1dead;
     public float ia1speed = 3;
     public float minposx;
