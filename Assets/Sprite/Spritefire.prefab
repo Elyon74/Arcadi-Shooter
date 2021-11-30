@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 918306650281544276}
   - component: {fileID: 4231656357001963899}
   - component: {fileID: 8289562410387226282}
-  - component: {fileID: 8440656876777398453}
   m_Layer: 0
   m_Name: Sprite-fire
   m_TagString: Projectile
@@ -32,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.8, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4049894812265104404}
   m_RootOrder: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c1be561d32a25ee46b7f742ffbcb2cde, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -194,7 +194,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.04665135, y: -0.25115895}
@@ -247,37 +247,7 @@ MonoBehaviour:
   fire: {fileID: 98266640705686064}
   Impulse: {fileID: 4231656357001963899}
   boxCollider2D: {fileID: 918306650281544276}
-  Ia1: {fileID: 8440656876777398453}
---- !u!114 &8440656876777398453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7021339247546613063}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b005ddbac1477394e8218028af2bace1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentia1hp: 3
-  currentia1level: 1
-  currentia1goldforkill: 10
-  currentia1expforkill: 10
-  ia1firerate: 1
-  ia1dead: 0
-  ia1fireenclenched: 0
-  ia1speed: 3
-  minposx: 0
-  maxposx: 0
-  minposy: 0
-  maxposy: 0
-  player: {fileID: 0}
-  RigidPlayer: {fileID: 0}
-  ColliderPlayer: {fileID: 0}
-  PlayerSpriteRenderer: {fileID: 0}
-  transform: {fileID: 0}
-  SpritefireIA: {fileID: 0}
+  Ia1: {fileID: 0}
 --- !u!1 &8831317237999737160
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +274,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3228503881212453502}
   m_Father: {fileID: 0}

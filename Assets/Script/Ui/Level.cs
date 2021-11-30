@@ -9,6 +9,7 @@ public class Level : MonoBehaviour
     [SerializeField]
     public Player player;
     private TextMeshPro UILevel;
+
     void Start()
     {
         player = GetComponent<Player>();
@@ -16,7 +17,7 @@ public class Level : MonoBehaviour
 
     void Update()
     {
-        CurrentPlayerLevelInUI();
+        //CurrentPlayerLevelInUI();
     }
 
     void CurrentPlayerLevelInUI()

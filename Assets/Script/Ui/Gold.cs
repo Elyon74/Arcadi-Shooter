@@ -9,7 +9,6 @@ public class Gold : MonoBehaviour
     [SerializeField]
     public Player player;
     private TextMeshPro UIGold;
-
     void Start()
     {
         player = GetComponent<Player>();
@@ -17,7 +16,7 @@ public class Gold : MonoBehaviour
 
     void Update()
     {
-        CurrentPlayerGoldInUI();
+        //CurrentPlayerGoldInUI();
     }
 
     void CurrentPlayerGoldInUI()

@@ -14,7 +14,7 @@ public class PlayerShield : MonoBehaviour
 
     void Start()
     {
-        
+        player = GetComponent<Player>();
     }
 
     void Update()
@@ -24,13 +24,14 @@ public class PlayerShield : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == ("Projectile"))
+        if (collision.collider.gameObject.tag == "ProjectileIA" & (playershielddef >= 1))
         {
             playershielddef -= 1;
-            if (playershielddef == 0)
-            {
-                Destroy(this, 1f);
-            }
         }
-    }
+        if (collision.collider.gameObject.tag == "ProjectileIA" & (playershielddef == 0))
+        {
+            Destroy(GameObject.FindWithTag("PlayerShield"), 1f);
+            player.currentnumberofshield = 0;
+        }
+        }
 }

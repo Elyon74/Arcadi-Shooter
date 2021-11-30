@@ -16,10 +16,10 @@ public class Player : MonoBehaviour
     public int currentplayergold = 0;
     public int maxplayergold = 999;
     public int currentnumberofshield = 1;
-    public int maxnumberofshield = 3;
+    public int currentplayerprojectile = 25;
     public bool dead;
-    public bool fireenclenched;
-    public bool shieldenclenched;
+    public bool maxplayerhptrigger;
+    public bool fireenclenched = true;
     public float speed = 4;
 
     // Position des bordures de la fenetre
@@ -29,12 +29,21 @@ public class Player : MonoBehaviour
     public float maxposy;
 
     private Vector3 velocity = Vector3.zero;
+    public PlayerShield Shield;
     public Rigidbody2D RigidPlayer;
     public BoxCollider2D ColliderPlayer;
     public SpriteRenderer PlayerSpriteRenderer;
-    public new Transform transform;
+    public Transform firingPoint;
+    public Transform firingPoint2;
+    public Transform HPPoint1;
+    public Transform HPPoint2;
+    public Transform HPPoint3;
+    public Transform SpriteHP1;
+    public Transform SpriteHP2;
+    public Transform SpriteHP3;
     public Transform Spritefire;
     public Transform Spriteshield;
+    public Transform Spriteshieldposition;
 
     private void Awake()
     {
@@ -43,28 +52,27 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        transform = GetComponent<Transform>();
 
     }
 
     void Update()
     {
         Vector3 pos = transform.position;
-        HP(currentplayerhp, dead);
-        ExpMax(currentplayerexp, currentplayerlevel, maxplayerhp);
-        PlayerMaxGold(currentplayergold, maxplayergold);
+        HP();
+        ExpMax();
+        PlayerMaxGold();
         pos.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         pos.y += Input.GetAxis("Vertical") * speed * Time.deltaTime;
         transform.position = pos;
 
         // Blocage du joueur sur les bords de l' écran
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minposx, maxposx),Mathf.Clamp(transform.position.y, minposy, maxposy), transform.position.z);
-        PlayerAttack(fireenclenched);
-        PlayerMove(fireenclenched);
-        PlayerShield(shieldenclenched, currentnumberofshield);
+        PlayerAttack();
+        PlayerMove();
+        PlayerShield();
     }
 
-public void HP(int currentplayerhp, bool dead)
+public void HP()
     {
         if (currentplayerhp == 0)
         {
@@ -76,32 +84,49 @@ public void HP(int currentplayerhp, bool dead)
                 Destroy(this);
             }
         }
+
         if (currentplayerhp == 2)
         {
+            maxplayerhptrigger = false;
             Destroy(GameObject.Find("Sprite-HP3"), 1f);
         }
+
         if (currentplayerhp == 1)
         {
             Destroy(GameObject.Find("Sprite-HP2"), 1f);
         }
+
+        if (maxplayerhptrigger == true)
+        {
+            currentplayerhp = 3;
+            var hpTransform = Instantiate(SpriteHP1);
+            hpTransform.position = HPPoint1.position;
+
+            var hpTransform2 = Instantiate(SpriteHP2);
+            hpTransform.position = HPPoint2.position;
+
+            var hpTransform3 = Instantiate(SpriteHP3);
+            hpTransform.position = HPPoint3.position;
+
+        }
     }
 
-public void ExpMax(int currentplayerexp, int currentplayerlevel, int maxplayerhp)
+public void ExpMax()
     {
         if (currentplayerexp == 100)
         {
         currentplayerlevel += 1;
-            currentplayerexp = 0;
+        currentplayerexp = 0;
         maxplayerhp += 1;
         }
 }
 
-public void PlayerMaxGold(int currentplayergold, int maxplayergold)
+public void PlayerMaxGold()
     {
         if (currentplayergold > maxplayergold)
             currentplayergold = 999;
     }
-public void PlayerMove(bool fireenclenched)
+public void PlayerMove()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -110,53 +135,44 @@ public void PlayerMove(bool fireenclenched)
                 PlayerSpriteRenderer.flipY = false;
             }
         }
-        /*if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (PlayerSpriteRenderer != null)
-            {
-                PlayerSpriteRenderer.flipY = true;
-            }
-        }*/
+
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene(2);
         }
    }
 
-public void PlayerAttack(bool fireenclenched)
+public void PlayerAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) //Key Appuie continue sur la touche KeyDown Un seul appui
+        if (Input.GetKeyDown(KeyCode.Mouse0) & (currentplayerprojectile >= 1))  //Key Appuie continue sur la touche KeyDown Un seul appui
         {
-            fireenclenched = true;
             if (fireenclenched == true)
             {
-                var shotTransform = Instantiate(Spritefire) as Transform;
-                shotTransform.position = transform.position;
+                currentplayerprojectile -= 1;
+                var shotTransform = Instantiate(Spritefire);
+                shotTransform.position = firingPoint.position;
             }
         }
-        else
-            fireenclenched = false;
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) & (currentplayerprojectile >= 1))
+        {
+            if (fireenclenched == true)
+            {
+                currentplayerprojectile -= 1;
+                var shotTransform = Instantiate(Spritefire);
+                shotTransform.position = firingPoint2.position;
+            }
+        }
     }
 
-public void PlayerShield(bool shieldenclenched, int currentnumberofshield)
+public void PlayerShield()
     {
-        if (Input.GetKeyDown(KeyCode.A) & currentnumberofshield >=1)
-            {
-            shieldenclenched = true;
-            if (shieldenclenched == true & currentnumberofshield >=1)
-            {
-                currentnumberofshield -= 1;
-                var shieldTransform = Instantiate(Spriteshield) as Transform;
-                shieldTransform.position = transform.position;
-            }
-        }
-        else if (currentnumberofshield <= 0)
+        if (Input.GetKeyDown(KeyCode.A) & currentnumberofshield == 1)
         {
-            shieldenclenched = false;
-        }
-        if (currentnumberofshield <= 0)
-        {
-            currentnumberofshield = 0;
+            var shieldTransform = Instantiate(Spriteshield);
+            shieldTransform.position = Spriteshieldposition.position;
+            currentnumberofshield -= 1;
+            Shield.playershielddef = 6;
         }
     }
 }

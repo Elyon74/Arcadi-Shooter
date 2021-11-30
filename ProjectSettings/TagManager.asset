@@ -6,6 +6,12 @@ TagManager:
   tags:
   - IA1
   - Projectile
+  - ProjectileIA
+  - PlayerShield
+  - PlayerShieldRegen
+  - UI
+  - AmmoRegen
+  - PlayerHPRegen
   layers:
   - Default
   - TransparentFX

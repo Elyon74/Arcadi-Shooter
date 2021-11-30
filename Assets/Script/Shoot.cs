@@ -14,7 +14,8 @@ public class Shoot : MonoBehaviour
 
     void Start()
     {
-        Impulse = this.GetComponent<Rigidbody2D>();
+        Impulse = GetComponent<Rigidbody2D>();
+        Ia1 = GetComponent<IA1>();
     }
 
     void Update()
@@ -31,15 +32,40 @@ public class Shoot : MonoBehaviour
 
     public void SelfDestroy()
     {
-        Destroy(this, 5f);
+        Destroy(GameObject.FindWithTag("Projectile"), 1f);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == ("IA1"))
+        if (collision.collider.gameObject.tag == "IA1")
         {
             Ia1.currentia1hp -= 1;
-            Destroy(this, 1f);
+            Destroy(GameObject.FindWithTag("Projectile"));
+        }
+
+        if (collision.collider.gameObject.tag == "UI")
+        {
+            gameObject.SetActive(false);
+            Destroy(GameObject.FindWithTag("Projectile"));
+        }
+
+        if (collision.collider.gameObject.tag == "PlayerShieldRegen")
+        {
+            gameObject.SetActive(false);
+            Destroy(GameObject.FindWithTag("Projectile"));
+        }
+
+        if (collision.collider.gameObject.tag == "AmmoRegen")
+        {
+            gameObject.SetActive(false);
+            Destroy(GameObject.FindWithTag("Projectile"));
+        }
+
+
+        if (collision.collider.gameObject.tag == "PlayerHPRegen")
+        {
+            gameObject.SetActive(false);
+            Destroy(GameObject.FindWithTag("Projectile"));
         }
     }
 }
